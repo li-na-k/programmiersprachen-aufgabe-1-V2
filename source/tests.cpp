@@ -50,6 +50,19 @@ int sum_multiples(int until){
     return sum;
 }
 
+//Aufgabe 1.13 - Faktor einer natürlichen Zahl
+int factorial(int a){
+  int result = 1;
+  if(a<0){
+    return -1;
+    std::cout<<"Die Eingabe darf nicht negativ sein.\n";
+  }
+  for(int i=1;i<=a;i++){
+    result = result*i;
+  }
+  return result;
+}
+
 // Aufgabe 1.8
 TEST_CASE("größter_gemeinsamen_teiler_bestimmen", "[gcd]"){
   REQUIRE(gcd(2,4) == 2); 
@@ -88,6 +101,16 @@ TEST_CASE("berechne_sum_multiples", "[gcd]"){
   REQUIRE(sum_multiples(0) == -1);
   REQUIRE(sum_multiples(-4) == -1);
   REQUIRE(sum_multiples(1) == 0);
+}
+
+//Aufgabe 1.13
+TEST_CASE("Faktor_einer_natürlichen_Zahl", "[factorial]"){
+  REQUIRE(factorial(5) == 120);
+  REQUIRE(factorial(11) == 39916800); 
+  REQUIRE(factorial(0) == 1); 
+  REQUIRE(factorial(1) == 1); 
+  REQUIRE(factorial(-1) == -1); 
+  REQUIRE(factorial(-4) == -1); 
 }
 
 int main(int argc, char* argv[])
