@@ -63,6 +63,22 @@ int factorial(int a){
   return result;
 }
 
+// Aufgabe 1.14 - Test ob Primzahl
+bool is_prime(int a){ 
+  if(a<=1){
+    return false;
+  }
+  for(int i=2; i<a; i++){
+    if(a%i == 0){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  return true; //für Fall a == 2
+}
+
 // Aufgabe 1.8
 TEST_CASE("größter_gemeinsamen_teiler_bestimmen", "[gcd]"){
   REQUIRE(gcd(2,4) == 2); 
@@ -111,6 +127,17 @@ TEST_CASE("Faktor_einer_natürlichen_Zahl", "[factorial]"){
   REQUIRE(factorial(1) == 1); 
   REQUIRE(factorial(-1) == -1); 
   REQUIRE(factorial(-4) == -1); 
+}
+
+//Aufgabe 1.14 (Eine Primzahl ist eine natürliche Zahl, die größer als 1 und ausschließlich durch sich selbst und durch 1 teilbar ist.)
+TEST_CASE("check_if_prime", "[is_prime]"){
+  REQUIRE(is_prime(0) == false); 
+  REQUIRE(is_prime(-1) == false); 
+  REQUIRE(is_prime(1) == false); 
+  REQUIRE(is_prime(2) == true); 
+  REQUIRE(is_prime(-9) == false); 
+  REQUIRE(is_prime(3) == true);
+  REQUIRE(is_prime(22) == false);
 }
 
 int main(int argc, char* argv[])
