@@ -50,6 +50,35 @@ int sum_multiples(int until){
     return sum;
 }
 
+//Aufgabe 1.11
+double fract(double a){
+  int vorkomma = int(a);
+  return a-vorkomma;
+} 
+
+//Aufgabe 1.12 - Volumen Zylinder
+double volumen_zylinder(double r, double h){
+  if(r<0 || h<0){
+    return -1;
+    std::cout<<"Weder Radius noch Höhe des Zylinders dürfen negativ sein.";
+  }
+  else{
+    return M_PI*pow(r,2.0)*h;
+  }
+}
+
+//Aufgabe 1.12 - Oberflaeche Zylinder
+double oberflaeche_zylinder(double r, double h){
+  if(r<0 || h<0){
+    return -1;
+    std::cout<<"Weder Radius noch Höhe des Zylinders dürfen negativ sein.";
+  }
+  else{
+    double surface = 2 * M_PI * r * (r + h);
+    return surface;
+  }
+}
+
 //Aufgabe 1.13 - Faktor einer natürlichen Zahl
 int factorial(int a){
   int result = 1;
@@ -117,6 +146,35 @@ TEST_CASE("berechne_sum_multiples", "[gcd]"){
   REQUIRE(sum_multiples(0) == -1);
   REQUIRE(sum_multiples(-4) == -1);
   REQUIRE(sum_multiples(1) == 0);
+}
+
+
+//Aufgabe 1.12 - Volumen
+TEST_CASE("Volumen_Zylinder", "[volumen_zylinder]"){
+  REQUIRE(volumen_zylinder(3,3) == Approx(84.82300165));
+  REQUIRE(volumen_zylinder(1.1,0.1) == Approx(0.3801327111));
+  REQUIRE(volumen_zylinder(-4,5) == -1);
+  REQUIRE(volumen_zylinder(2,-7) == -1);
+  REQUIRE(volumen_zylinder(0,4) == 0);
+}
+
+//Aufgabe 1.12 - Oberfläche
+TEST_CASE("Oberflaeche_Zylinder", "[oberflaeche_zylinder]"){
+  REQUIRE(oberflaeche_zylinder(3.1,7.8) == Approx(212.3088315));
+  REQUIRE(oberflaeche_zylinder(0.5,2) == Approx(7.853981634));
+  REQUIRE(oberflaeche_zylinder(0,3) == 0);
+  REQUIRE(oberflaeche_zylinder(-3,3) == -1);
+}
+
+//Aufgabe 1.11
+TEST_CASE("Nachkomma- Anteil einer Gleitkommazahl", "[fract]"){
+  REQUIRE(fract(0.123) == Approx(0.123));
+  REQUIRE(fract(5.176) == Approx(0.176)); 
+  REQUIRE(fract(-9.444) == Approx(-0.444)); 
+  REQUIRE(fract(-9.9941234567890) == Approx(-0.9941234567890)); 
+  REQUIRE(fract(0) == 0); 
+  REQUIRE(fract(5) == 0); 
+  REQUIRE(fract(-3) == 0);
 }
 
 //Aufgabe 1.13
