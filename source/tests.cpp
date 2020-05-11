@@ -7,15 +7,15 @@
 //Aufgabe 1.8 - groesster gemeinsamer Teiler
 int gcd(int a, int b){ 
   if (b == 0 && a == 0) {
-        std::cout<< "Uebergebene Zahlen duerfen nicht beide negativ sein.";
+        std::cout<< "Uebergebene Zahlen duerfen nicht beide Null sein.";
         return -1;
     }
 
   if(b == 0){
-    return abs(a);
+    return abs(a); //abs, damit natürliche Zahl
   }
   else{
-    return(gcd(b, a % b));
+    return(gcd(b, a % b)); // rekursiv aufgerufen bis b == 0
   }
 }
 
@@ -50,7 +50,7 @@ int sum_multiples(int until){
     return sum;
 }
 
-//Aufgabe 1.11
+//Aufgabe 1.11 - Nachkommaanteil
 double fract(double a){
   int vorkomma = int(a);
   return a-vorkomma;
@@ -63,7 +63,7 @@ double volumen_zylinder(double r, double h){
     std::cout<<"Weder Radius noch Höhe des Zylinders dürfen negativ sein.";
   }
   else{
-    return M_PI*pow(r,2.0)*h;
+    return M_PI*pow(r,2.0)*h; 
   }
 }
 
@@ -137,7 +137,7 @@ TEST_CASE("Quersumme_berechnen", "[checksum]"){
 }
 
 //Aufgabe 1.10
-TEST_CASE("berechne_sum_multiples", "[gcd]"){
+TEST_CASE("berechne_sum_multiples", "[sum_multiples]"){
   REQUIRE(sum_multiples(1000) == 234168);
   REQUIRE(sum_multiples(3) == 3);
   REQUIRE(sum_multiples(5) == 8);
